@@ -1,5 +1,11 @@
 library(shiny)
 
+m1<-glm(ncases~.,data=esoph)
+m2<-glm(ncases~alcgp,data=esoph)
+m3<-glm(ncases~tobgp,data=esoph)
+m4<-glm(ncases~agegp,data=esoph)
+data1<-data.frame(m1$resid,m2$resid,m3$resid,m4$resid) 
+
 #Building the UI
 shinyUI(
   fluidPage(    
