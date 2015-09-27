@@ -1,10 +1,13 @@
+
 library(shiny)
 
 m1<-glm(ncases~.,data=esoph)
 m2<-glm(ncases~alcgp,data=esoph)
 m3<-glm(ncases~tobgp,data=esoph)
 m4<-glm(ncases~agegp,data=esoph)
-data1<-data.frame(m1$resid,m2$resid,m3$resid,m4$resid) 
+data1<-data.frame(All=m1$resid,Alcohol=m2$resid,Tobacco=m3$resid,Age=m4$resid)   
+
+
 
 #Building the UI
 shinyUI(
@@ -12,12 +15,12 @@ shinyUI(
     # Give the page a title
     titlePanel("Esophogeal Cancer Analysis"),   
     sidebarLayout(          
-      # Define the sidebar with one input
+
       sidebarPanel(
         selectInput("model", "Predictors:", 
                     choices=colnames(data1)),
         hr(),
-        helpText("Residuals from Modeling")
+        helpText("Please select Model predictor to view residuals")
       ),
       
       # Create a spot for the barplot
@@ -28,6 +31,5 @@ shinyUI(
     )
   )
 )
-
 
 
