@@ -27,6 +27,14 @@ shinyServer(function(input, output) {
             ylab="Residuals",
             xlab="Observations", col="blue")
   })
+  output$summary <- renderPrint({
+    summary(esoph)
+  })
+  
+  output$table <- renderTable({
+    data.frame(x=esoph)
+  })
+  
 })
 
 

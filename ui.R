@@ -25,11 +25,14 @@ shinyUI(
       
       # Create a spot for the barplot
       mainPanel(
-        plotOutput("residPlot")  
-      )
+        tabsetPanel(type = "tabs", 
+                    tabPanel("Plot of Residuals", plotOutput("residPlot")), 
+                    tabPanel("Summary of Esoph Data", verbatimTextOutput("summary")), 
+                    tabPanel("Table of Esoph Data", tableOutput("table"))
+              )
       
     )
   )
-)
+))
 
 
